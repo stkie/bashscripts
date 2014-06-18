@@ -12,6 +12,7 @@ usage_f ()
         echo "		verify [sigfile.sig] [inputfile]"
 	echo "		export [keyid]"
 	echo "		sign [sender id] [receiver id] [inputfile]"
+	echo "		msg [sender id] [receiver id] [outputfile]"
 	echo ""
 }
 
@@ -28,6 +29,9 @@ export_f () {
 sign_f () {
 	gpg -u "$1" -r "$2" --armor --sign --encrypt "$3"
 }
+msg_f () {
+	gpg -ase -u "$1" -r "$2" --output "$3"
+}
 
 # execute
 case "$1" in
@@ -42,6 +46,9 @@ case "$1" in
 	;;
   sign)
 	sign_f "$2" "$3" "$4"
+	;;
+  msg)
+	msg_f "$2" "$3" "$4"
 	;;
   *)
 	usage_f
