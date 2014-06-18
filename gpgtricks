@@ -8,7 +8,7 @@ V3=$4
 V4=$5
 V5=$6
 
-# Subroutine to echo the usage
+# echo the usage
 usage_f ()
 {
 	echo ""
@@ -27,7 +27,7 @@ gpg-verify-sig_f () {
 	gpg --verify $V1 $V2
 }
 
-# See how we were called.
+# execute
 case "$1" in
   gpg-detach-sig)
 	gpg-detach-sig_f
