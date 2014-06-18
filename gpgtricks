@@ -2,46 +2,42 @@
 # gpgtricks by stephan@stephan.ws
 # 2014-06-18	0.1	initial release
 
-# help funtions
-display_usage_gpg-detach-sig() { 
-	echo -e "\nUsage:\n$0 gpg-detach-sig [signature file ] [file to verify] \n"
-	}
-display_usage_gpg-verify-sig() { 
-	echo -e "\nUsage:\n$0 gpg-verify-sig [signature file ] [file to verify] \n"
-	}
+V1=$2
+V2=$3
+V3=$4
+V4=$5
+V5=$6
+
+# Subroutine to echo the usage
+usage_f ()
+{
+	echo ""
+	echo $"Usage:		$0 {gpg-detach-sig|gpg-verify-sig}"
+	echo "" 
+	echo "Where:		gpg-detach-sig [sigfile.sig] [inputfile]"
+        echo "		gpg-verify-sig [sigfile.sig] [inputfile]"
+	echo ""
+}
 
 # main functions
-gpg-detach-sig() {
-	if [  $# -le 1 ]
-        then
-		display_usage_gpg-detach-sig
-	exit 1
-        fi
-		gpg --output $1 --detach-sig $2
+gpg-detach-sig_f () {
+	gpg --output $V1 --detach-sig $V2
 }
-gpg-verify-sig() {
-
-        if [  $# -le 1 ]
-        then
-		display_usage_gpg-verify-sig	
-	exit 1
-        fi
-		gpg --verify $1 $2
+gpg-verify-sig_f () {
+	gpg --verify $V1 $V2
 }
 
 # See how we were called.
 case "$1" in
   gpg-detach-sig)
-	gpg-detach-sig
+	gpg-detach-sig_f
 	;;
   gpg-verify-sig)
-	gpg-verify-sig
+	gpg-verify-sig_f
 	;;
   *)
-	echo $"Usage: $0 {gpg-detach-sig|gpg-verify-sig}"
+	usage_f
 	exit 2
 esac
-
-exit $?
 
 # EOF
