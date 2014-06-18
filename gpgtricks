@@ -6,28 +6,35 @@
 usage_f ()
 {
 	echo ""
-	echo $"Usage:		$0 {gpg-detach-sig|gpg-verify-sig}"
+	echo $"usage:		$0 {command}"
 	echo "" 
-	echo "Where:		gpg-detach-sig [sigfile.sig] [inputfile]"
-        echo "		gpg-verify-sig [sigfile.sig] [inputfile]"
+	echo "commands:	detach-sig [sigfile.sig] [inputfile]"
+        echo "		verify-sig [sigfile.sig] [inputfile]"
+	echo "		export-key [keyid]"
 	echo ""
 }
 
 # main functions
-gpg-detach-sig_f () {
+detach-sig_f () {
 	gpg --output "$1" --detach-sig "$2"
 }
-gpg-verify-sig_f () {
+verify-sig_f () {
 	gpg --verify "$1" "$2"
+}
+export-key_f () {
+	gpg -a --export "$1"
 }
 
 # execute
 case "$1" in
-  gpg-detach-sig)
-	gpg-detach-sig_f "$2" "$3"
+  detach-sig)
+	detach-sig_f "$2" "$3"
 	;;
-  gpg-verify-sig)
-	gpg-verify-sig_f "$2" "$3"
+  verify-sig)
+	verify-sig_f "$2" "$3"
+	;;
+  export-key)
+	export-key_f "$2"
 	;;
   *)
 	usage_f
