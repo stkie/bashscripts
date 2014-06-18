@@ -2,12 +2,6 @@
 # gpgtricks by stephan@stephan.ws
 # 2014-06-18	0.1	initial release
 
-V1=$2
-V2=$3
-V3=$4
-V4=$5
-V5=$6
-
 # echo the usage
 usage_f ()
 {
@@ -21,19 +15,19 @@ usage_f ()
 
 # main functions
 gpg-detach-sig_f () {
-	gpg --output $V1 --detach-sig $V2
+	gpg --output "$1" --detach-sig "$2"
 }
 gpg-verify-sig_f () {
-	gpg --verify $V1 $V2
+	gpg --verify "$1" "$2"
 }
 
 # execute
 case "$1" in
   gpg-detach-sig)
-	gpg-detach-sig_f
+	gpg-detach-sig_f "$2" "$3"
 	;;
   gpg-verify-sig)
-	gpg-verify-sig_f
+	gpg-verify-sig_f "$2" "$3"
 	;;
   *)
 	usage_f
