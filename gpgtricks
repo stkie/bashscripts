@@ -11,6 +11,7 @@ usage_f ()
 	echo "commands:	detach-sig [sigfile.sig] [inputfile]"
         echo "		verify-sig [sigfile.sig] [inputfile]"
 	echo "		export-key [keyid]"
+	echo "		sign [sender id] [receiver id] [inputfile]"
 	echo ""
 }
 
@@ -24,6 +25,9 @@ verify-sig_f () {
 export-key_f () {
 	gpg -a --export "$1"
 }
+sign_f () {
+	gpg -u $1 -r $2 --armor --sign --encrypt $3
+}
 
 # execute
 case "$1" in
@@ -35,6 +39,9 @@ case "$1" in
 	;;
   export-key)
 	export-key_f "$2"
+	;;
+  sign)
+	sign_f "$2" "$3" "$4"
 	;;
   *)
 	usage_f
