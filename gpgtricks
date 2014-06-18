@@ -8,37 +8,37 @@ usage_f ()
 	echo ""
 	echo $"usage:		$0 {command}"
 	echo "" 
-	echo "commands:	detach-sig [sigfile.sig] [inputfile]"
-        echo "		verify-sig [sigfile.sig] [inputfile]"
-	echo "		export-key [keyid]"
+	echo "commands:	detach [sigfile.sig] [inputfile]"
+        echo "		verify [sigfile.sig] [inputfile]"
+	echo "		export [keyid]"
 	echo "		sign [sender id] [receiver id] [inputfile]"
 	echo ""
 }
 
 # main functions
-detach-sig_f () {
+detach_f () {
 	gpg --output "$1" --detach-sig "$2"
 }
-verify-sig_f () {
+verify_f () {
 	gpg --verify "$1" "$2"
 }
-export-key_f () {
+export_f () {
 	gpg -a --export "$1"
 }
 sign_f () {
-	gpg -u $1 -r $2 --armor --sign --encrypt $3
+	gpg -u "$1" -r "$2" --armor --sign --encrypt "$3"
 }
 
 # execute
 case "$1" in
-  detach-sig)
-	detach-sig_f "$2" "$3"
+  detach)
+	detach_f "$2" "$3"
 	;;
-  verify-sig)
-	verify-sig_f "$2" "$3"
+  verify)
+	verify_f "$2" "$3"
 	;;
-  export-key)
-	export-key_f "$2"
+  export)
+	export_f "$2"
 	;;
   sign)
 	sign_f "$2" "$3" "$4"
