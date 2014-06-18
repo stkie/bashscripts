@@ -1,0 +1,36 @@
+#!/bin/bash
+# gpgtricks by stephan@stephan.ws
+# 2014-06-18	0.1	initial release
+
+# help funtions
+
+display_usage_gpg-detach-sig() { 
+	echo -e "\nUsage:\n$0 [signature file ] [file to verify] \n"
+	}
+
+display_usage_gpg-verify-sig() { 
+	echo -e "\nUsage:\n$0 [signature file ] [file to verify] \n"
+	}
+
+# main functions
+
+gpg-detach-sig() {
+	if [  $# -le 1 ]
+        then
+		display_usage_gpg-detach-sig
+	exit 1
+        fi
+		gpg --output $1 --detach-sig $2
+}
+gpg-verify-sig() {
+
+        if [  $# -le 1 ]
+        then
+		display_usage_gpg-verify-sig	
+	exit 1
+        fi
+		gpg --verify $1 $2
+}
+
+# putting it together
+
