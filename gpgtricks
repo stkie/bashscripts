@@ -8,11 +8,11 @@ usage_f ()
 	echo ""
 	echo $"usage:		$0 {command}"
 	echo "" 
-	echo "commands:	detach [sigfile.sig] [inputfile]"
-        echo "		verify [sigfile.sig] [inputfile]"
-	echo "		export [keyid]"
-	echo "		sign [sender id] [receiver id] [inputfile]"
-	echo "		msg [sender id] [receiver id] [outputfile]"
+	echo "commands:	detach [sigfile.sig] [inputfile]		- creates a detached signature/file combination"
+        echo "		verify [sigfile.sig] [inputfile]		- verifies a signature/file combination"
+	echo "		export [keyid]					- exports a key"
+	echo "		sign [sender id] [receiver id] [inputfile] 	- signs and encrypts a file"
+	echo "		msg [sender id] [receiver id] [outputfile] 	- creates an encrypted message interactivly"
 	echo ""
 }
 
