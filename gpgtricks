@@ -4,10 +4,10 @@
 
 # help funtions
 display_usage_gpg-detach-sig() { 
-	echo -e "\nUsage:\n$0 [signature file ] [file to verify] \n"
+	echo -e "\nUsage:\n$0 gpg-detach-sig [signature file ] [file to verify] \n"
 	}
 display_usage_gpg-verify-sig() { 
-	echo -e "\nUsage:\n$0 [signature file ] [file to verify] \n"
+	echo -e "\nUsage:\n$0 gpg-verify-sig [signature file ] [file to verify] \n"
 	}
 
 # main functions
